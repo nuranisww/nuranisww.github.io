@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nur Anis Syadia - e-Portfolio</title>
+    <style>
+        :root {
+            --primary-color: #3C6324; /* SDG 4 Red Theme */
+            --primary-light: #8BC865;
+            --text-dark: #245C63;
+            --text-light: #7f8c8d;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        body {
+            line-height: 1.6;
+            padding-top: 70px;
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Sections General */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            position: relative;
+            color: var(--text-dark);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 50px;
+            font-size: 1.05rem;
+        }
+
+        /* Hero / Home Section */
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            min-height: calc(85vh - 70px);
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-badge {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .hero-meta {
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            color: var(--text-light);
+        }
+
+        .hero-meta p {
+            margin-bottom: 5px;
+        }
+
+        .hero-meta strong {
+            color: var(--text-dark);
+        }
+
+        .hero-intro {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--text-dark);
+        }
+
+        .sdg-box {
+            background: var(--white);
+            border-left: 5px solid var(--primary-color);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .sdg-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 1.15rem;
+        }
+
+        /* Grid Cards Layout (Labs & Projects) */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background-color: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .card-body {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .card-reflection {
+            background-color: var(--bg-light);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            border-top: 3px solid var(--primary-color);
+            margin-top: auto;
+            color: var(--text-dark);
+        }
+
+        .card-reflection strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        .btn-github {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: #24292e;
+            color: var(--white);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+
+        .btn-github:hover {
+            background-color: #000000;
+        }
+
+        /* Reflection Section */
+        .reflection-container {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .reflection-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            text-align: justify;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .skill-badge {
+            background-color: var(--white);
+            color: var(--text-dark);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .skill-badge:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: scale(1.05);
+        }
+
+        /* Resources Section */
+        .resources-container {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .resources-list {
+            list-style-position: inside;
+            margin-bottom: 30px;
+        }
+
+        .resources-list li {
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .acknowledgement-box {
+            background-color: var(--primary-light);
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .acknowledgement-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+            font-size: 0.95rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 120px;
+            }
+            nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+            #home {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .sdg-box {
+                text-align: left;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#home" class="nav-logo">Anis's e-Portfolio</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#labs">Labs</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#reflection">Reflection</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#resources">Resources</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="hero-content">
+            <span class="hero-badge">Mobile Programming Portfolio</span>
+            <h1>Nur Anis Syadia<br>Binti Mohd Nazumi</h1>
+            
+            <div class="hero-meta">
+                <p><strong>Matric No:</strong> A212249</p>
+                <p><strong>Programme:</strong> Information Technology</p>
+                <p><strong>Instructor:</strong> Dr Rimaniza Zainal Abidin</p>
+            </div>
+
+            <p class="hero-intro">
+                Welcome to my e-Portfolio. This portfolio presents my work and learning progress throughout the Mobile Programming course, including the development of LearnFlow, a study timer application. The project supports SDG 4: Quality Education by promoting organised and focused learning.
+            </p>
+
+            <div class="sdg-box">
+                <h3>SDG 4: Quality Education</h3>
+                <p>LearnFlow encourages students to manage study sessions efficiently and maintain consistent learning habits, fostering equitable and high-quality self-education infrastructure.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="labs">
+        <h2 class="section-title">Laboratory Exercises</h2>
+        <p class="section-subtitle">Core practical competencies built step-by-step using modern Android development principles.</p>
+        
+        <div class="card-grid">
+            <div class="card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/f-cUxoRATC4" title="Lab 1 Video Presentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Lab 1: UI Fundamentals</h3>
+                    <p class="card-description">Exploratory building block focusing on understanding structural layouts and basic components in Jetpack Compose.</p>
+                    <div class="card-reflection">
+                        <strong>Reflection:</strong>
+                        Through this lab, I learned the fundamentals of Jetpack Compose layouts using components such as Column, Row, Box, and Modifiers. Recreating the interface helped me understand how UI elements are arranged and structured in Android development. This experience improved my confidence in designing user interfaces for future mobile applications.
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/bQGs_k86MpY" title="Lab 2 Video Presentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Lab 2: State & Interaction</h3>
+                    <p class="card-description">Capturing user interactivity and handling local state mutation within interactive views dynamically.</p>
+                    <div class="card-reflection">
+                        <strong>Reflection:</strong>
+                        In this lab, I learned how to create interactive user interfaces using State in Jetpack Compose through components such as TextField and Button. Implementing remember and mutableStateOf helped me understand how user input can trigger recomposition and dynamically update the UI. This experience improved my understanding of building responsive mobile applications.
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/cSX6Y_3oUzg" title="Lab 3 Video Presentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Lab 3: Material Design Principles</h3>
+                    <p class="card-description">Polishing apps structurally with cohesive styling presets, themes, typography setups, and crisp UI feedback.</p>
+                    <div class="card-reflection">
+                        <strong>Reflection:</strong>
+                        In this lab, I learned how to apply Material Design principles to create a more consistent and visually appealing user interface. Customising colors, typography, and card components helped improve the overall user experience, while animations made the interface feel more interactive. This experience strengthened my understanding of designing modern mobile applications using Jetpack Compose.
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/fuO0G0gyoko" title="Lab 4 Video Presentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Lab 4: Advanced Navigation & ViewModels</h3>
+                    <p class="card-description">Structuring complex application flows utilizing reliable decoupled state architectures and routing patterns.</p>
+                    <div class="card-reflection">
+                        <strong>Reflection:</strong>
+                        In this lab, I learned how to build a multi-screen application using Jetpack Compose Navigation and manage UI-related data with ViewModel. Implementing routes and preserving data across screens helped me understand how modern mobile applications maintain consistency and improve user experience. This lab strengthened my understanding of application structure and state management.
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/dn4GzZOpL1k" title="Lab 5 Video Presentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Lab 5: Local Database with Room</h3>
+                    <p class="card-description">Integrating persistent infrastructure locally while adhering cleanly to the structured MVVM pattern.</p>
+                    <div class="card-reflection">
+                        <strong>Reflection:</strong>
+                        This lab helped me understand the integration of Room Database in Android development using the MVVM architecture. I learned how data is stored permanently through Entity, DAO, Repository, and ViewModel components. I also gained experience in verifying data persistence using Room and the Database Inspector even after the app is restarted.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Course Projects</h2>
+        <p class="section-subtitle">Iterative development cycles culminating in our comprehensive study solution: LearnFlow.</p>
+        
+        <div class="card-grid">
+            <div class="card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/s6SgfduBwgw" title="Project Phase 1 Presentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Project Phase 1: LearnFlow Core</h3>
+                    <p class="card-description"><strong>Problem Statement:</strong> Helps students to manage their study effectively by providing structured screen pathways and clean operational foundations.</p>
+                    <a href="https://github.com/nuranisww/A212249_DrRimaniza_Project1.git" class="btn-github" target="_blank">
+                        View on GitHub
+                    </a>
+                    <div class="card-reflection">
+                        <strong>Lessons Learned:</strong>
+                        Developing this phase consolidated my baseline understanding of explicit multi-screen routing networks tied directly with interactive layout tracking. Managing contextual view-state data across separate modules minimized architectural clutter significantly. This paved the clear scalable path required for complex tool additions later on.
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/cD1lcImK0DI" title="Project Phase 2 Presentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Project Phase 2: LearnFlow Connected</h3>
+                    <p class="card-description"><strong>Problem Statement:</strong> Mitigates data fragmentation and study context-loss by incorporating network synchronizations, hardware automation triggers, and real-time cloud tracking.</p>
+                    <a href="https://github.com/nuranisww/A212249_Anis_DrNiza_Project2.git" class="btn-github" target="_blank">
+                        View on GitHub
+                    </a>
+                    <div class="card-reflection">
+                        <strong>Lessons Learned:</strong>
+                        This advanced phase elevated my system-design mindset via multi-threaded remote operations alongside complex local storage cache synchronizations. Programming real-time physical device sensor modules expanded my appreciation for context-aware background hardware systems. Handling structured cloud paradigms safely solidified my production-ready software capabilities.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reflection">
+        <h2 class="section-title">Reflection & Learning Journey</h2>
+        <p class="section-subtitle">My developmental growth and engineering mindset evolution over the duration of this course.</p>
+        <div class="reflection-container">
+            <p class="reflection-text">
+                Enrolling in this course has profoundly redefined my approach to designing and conceptualizing complete mobile product pipelines. Transitioning smoothly into reactive paradigms with Jetpack Compose shifted my engineering strategy towards declarative component-driven software creation. Balancing strict local relational data integrity while connecting dynamic background threads and cloud updates introduced me to real-world industrial system architecture design complexities. Ultimately, constructing a meaningful tool matching SDG 4 principles has highlighted how thoughtful frontend software engineering directly enriches actual user education habits.
+            </p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Skills & Tech Stack</h2>
+        <p class="section-subtitle">The native toolsets, architectural paradigms, and system components utilized in my developments.</p>
+        <div class="skills-container">
+            <span class="skill-badge">Kotlin</span>
+            <span class="skill-badge">Jetpack Compose</span>
+            <span class="skill-badge">Room Database</span>
+            <span class="skill-badge">Retrofit API</span>
+            <span class="skill-badge">Firebase Firestore</span>
+            <span class="skill-badge">MVVM Architecture</span>
+        </div>
+    </section>
+
+    <section id="resources">
+        <h2 class="section-title">Resources & Acknowledgements</h2>
+        <p class="section-subtitle">External architectural dependencies, materials, and developmental aids used.</p>
+        <div class="resources-container">
+            <ul class="resources-list">
+                <li><strong>Jetpack Compose Toolkit:</strong> Provided core declarative layout components, modifiers, and view-state handlers.</li>
+                <li><strong>Room Persistence Library:</strong> Utilized for mapping abstraction configurations over standard SQLite queries locally.</li>
+                <li><strong>Retrofit & OkHttp:</strong> Facilitated network handshakes and response structural mapping for real-time web services.</li>
+                <li><strong>Firebase Firestore SDK:</strong> Enabled structural remote database sync endpoints with automatic pipeline updates.</li>
+            </ul>
+            <div class="acknowledgement-box">
+                <h4>AI Assistance Acknowledgement</h4>
+                <p>Generative AI platforms were used strategically during development to verify boilerplate MVVM structure conventions, debug state recomposition triggers, and optimize responsive stylesheet patterns for this e-Portfolio page layout.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Nur Anis Syadia Binti Mohd Nazumi. All Rights Reserved.</p>
+        <p>Matric: A212249 | Faculty of Information Science and Technology</p>
+    </footer>
+
+</body>
+</html>
